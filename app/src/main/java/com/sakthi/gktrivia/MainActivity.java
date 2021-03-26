@@ -3,6 +3,7 @@ package com.sakthi.gktrivia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -21,19 +22,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.d("TEST JSON", "onResponse:the responce is "+ response);
 
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("JSON", "onErrorResponse: This is the test if anything go's wrong");
 
                     }
                 });
+        AppController.getInstance().addToRequestQueue(jsonObjectRequest);
+
 
     }
+
 }
