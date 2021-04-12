@@ -16,8 +16,8 @@ public class AppController extends Application {
 
         public static final String TAG = AppController.class
                 .getSimpleName();
-        private static AppController mInstance;
-        private RequestQueue mRequestQueue;
+        public static AppController mInstance;
+        public RequestQueue mRequestQueue;
 
         public static synchronized AppController getInstance() {
         if (mInstance == null) {
