@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GK Trivia</string>
+    <string name="text_question">Question: 5/54</string>
+    <string name="button_true">TRUE</string>
+    <string name="button_false">FALSE</string>
+    <string name="button_next">NEXT</string>
+    <string name="button_previous">PREVIOUS</string>
+    <string name="place_holder">hello here the question will appear</string>
 </resources>
