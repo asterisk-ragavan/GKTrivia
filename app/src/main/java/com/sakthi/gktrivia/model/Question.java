@@ -1,8 +1,8 @@
 package com.sakthi.gktrivia.model;
 
 public class Question {
-    private String answer;
-    private  boolean answeropt;
+    public String answer;
+    public boolean answeropt;
 
     public Question() {
     }

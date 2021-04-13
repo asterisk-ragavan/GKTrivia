@@ -5,5 +5,5 @@
     <string name="button_false">FALSE</string>
     <string name="button_next">NEXT</string>
     <string name="button_previous">PREVIOUS</string>
-    <string name="place_holder">hello here the question will appear</string>
+    <string name="place_holder">Pls make sure you have internet connection, because this application needs internet to work</string>
 </resources>
