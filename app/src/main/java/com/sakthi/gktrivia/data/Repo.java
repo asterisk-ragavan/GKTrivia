@@ -23,17 +23,15 @@ public class Repo {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for (int i = 0; i <response.length(); i++) {
+                for (int i = 0; i < response.length(); i++) {
                     try {
                         Question question = new Question(response.getJSONArray(i).get(0).toString(),
                                 response.getJSONArray(i).getBoolean(1));
-
                         questionArrayList.add(question);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-
                 if (null != callback) callback.processfinished(questionArrayList);
 
             }
@@ -45,6 +43,7 @@ public class Repo {
             }
         });
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-        return null;
+
+        return questionArrayList;
     }
 }
