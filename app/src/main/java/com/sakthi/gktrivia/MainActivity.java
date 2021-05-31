@@ -23,9 +23,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    public int currentQuestionIndex = 0;
+    public int currentQuestionIndex;
     public List<Question> questions;
-    public int score = 0;
+    public int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             binding.textScore.setText("score: "+score);
             snackmesssage = R.string.correctanswer;
             fadeanimation();
+            currentQuestionIndex = (currentQuestionIndex+1) % questions.size();
+            updatequestion();
         }else {
             score = score - 100;
             if(score<0)score=0;
