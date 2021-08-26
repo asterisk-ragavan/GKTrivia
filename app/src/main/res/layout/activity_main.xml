@@ -3,13 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#4BD9EC"
         android:backgroundTint="#64CBDD"
         tools:context=".MainActivity">
@@ -55,7 +51,8 @@
                 android:text="@string/place_holder"
                 android:textAlignment="center"
                 android:textColor="#A718BF"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -64,11 +61,13 @@
             android:layout_width="0dp"
             android:backgroundTint="@color/purple_500"
             android:text="@string/button_true"
+            android:textColor="#80DEEA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.107" />
+            app:layout_constraintVertical_bias="0.107"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/button_false"
@@ -77,10 +76,11 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/purple_500"
             android:text="@string/button_false"
-            android:textColor="#D63333"
+            android:textColor="#80DEEA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_true" />
+            app:layout_constraintTop_toBottomOf="@+id/button_true"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/button_next"
@@ -94,7 +94,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.761"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_false" />
+            app:layout_constraintTop_toBottomOf="@+id/button_false"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/button_previous"
@@ -108,7 +109,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.21"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_false" />
+            app:layout_constraintTop_toBottomOf="@+id/button_false"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/text_score"
@@ -121,6 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_question_no" />
+            app:layout_constraintTop_toBottomOf="@+id/text_question_no"
+            tools:ignore="TextContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

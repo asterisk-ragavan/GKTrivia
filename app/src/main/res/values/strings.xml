@@ -5,7 +5,7 @@
     <string name="button_false">FALSE</string>
     <string name="button_next">NEXT</string>
     <string name="button_previous">PREVIOUS</string>
-    <string name="place_holder">Pls make sure you have internet connection, because this application needs internet to work</string>
+    <string name="place_holder">Pls make sure you have <b>active internet</b> connection, because this application needs internet to work</string>
     <string name="correctanswer">correct answer!</string>
     <string name="incorrect">incorrect answer</string>
     <string name="text_score">score: 0</string>

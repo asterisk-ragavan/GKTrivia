@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.sakthi.gktrivia.data.Repo;
 import com.sakthi.gktrivia.data.answerarrayasyncresponce;
@@ -26,11 +29,17 @@ public class MainActivity extends AppCompatActivity {
     public int currentQuestionIndex;
     public List<Question> questions;
     public int score;
+    private static final String score_data_id = "score data";
+    int reset_count = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences get_spref_data = getSharedPreferences(score_data_id,MODE_PRIVATE);
+        score = get_spref_data.getInt("score_data",0);
+        currentQuestionIndex = get_spref_data.getInt("currentQuestionIndex",0);
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         binding.textScore.setText("score: "+score);
@@ -77,6 +86,33 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        binding.textScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(reset_count==0){
+                    score = 1;
+                    currentQuestionIndex=0;
+                    binding.textScore.setText("score: "+score);
+                    updatequestion();
+                    Toast.makeText(MainActivity.this,"you have reseted your score and questions successfully -_-",Toast.LENGTH_SHORT).show();
+                    reset_count = 4;
+                    }
+                else {
+                    reset_count--;
+                    Toast.makeText(MainActivity.this,"clicking on score "+ reset_count +" more times will reset your score",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences sharedPreferences = getSharedPreferences(score_data_id,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("score_data",score);
+        editor.putInt("currentQuestionIndex",currentQuestionIndex);
+        editor.apply();
     }
 
     private void checkanswer(boolean option) {
