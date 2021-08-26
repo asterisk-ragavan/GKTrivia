@@ -1,5 +1,6 @@
 package com.sakthi.gktrivia;
 
+import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import android.annotation.SuppressLint;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public int score;
     private static final String score_data_id = "score data";
     int reset_count = 5;
+    int ee = 49;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +73,29 @@ public class MainActivity extends AppCompatActivity {
             binding.buttonTrue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    checkanswer(true);
-                    updatequestion();
+                    if(ee!=50) {
+                        checkanswer(true);
+                        updatequestion();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this,"well done that you acccepted the above statment, now you got rewaed of 10000",Toast.LENGTH_LONG).show();
+                        score = 10000;
+                        binding.textScore.setText("score: "+score);
+                        updatequestion();
+                    }
                 }
             });
 
             binding.buttonFalse.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    checkanswer(false);
-                    updatequestion();
+                    if(ee!=50) {
+                        checkanswer(false);
+                        updatequestion();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this,"WTF, the above statment can only be True",Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -90,16 +105,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(reset_count==0){
-                    score = 1;
+                    score = 0;
                     currentQuestionIndex=0;
                     binding.textScore.setText("score: "+score);
                     updatequestion();
                     Toast.makeText(MainActivity.this,"you have reseted your score and questions successfully -_-",Toast.LENGTH_SHORT).show();
-                    reset_count = 4;
+                    reset_count = 5;
                     }
                 else {
                     reset_count--;
                     Toast.makeText(MainActivity.this,"clicking on score "+ reset_count +" more times will reset your score",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ee==0){
+                    binding.questionText.setText("Here is the list of Sumith girlfriends\nDivya Priya, Evangelin, Shifa, Soujanya, Sujitha and Sowmiya\nNOTE: not farheen\t TRUE OR FALSE");
+                    ee = 50;
+                }
+                else {
+                    ee--;
                 }
             }
         });
