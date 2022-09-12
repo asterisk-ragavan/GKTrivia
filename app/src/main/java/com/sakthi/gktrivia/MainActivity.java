@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+<<<<<<< Updated upstream
+=======
+import android.widget.Toast;
+>>>>>>> Stashed changes
 import com.google.android.material.snackbar.Snackbar;
 import com.sakthi.gktrivia.data.Repo;
 import com.sakthi.gktrivia.data.answerarrayasyncresponce;
@@ -22,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityMainBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
     public int currentQuestionIndex;
     public List<Question> questions;
     public int score;
@@ -32,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< Updated upstream
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+=======
+        SharedPreferences get_spref_data = getSharedPreferences(score_data_id,MODE_PRIVATE);
+        score = get_spref_data.getInt("score_data",0);
+        currentQuestionIndex = get_spref_data.getInt("currentQuestionIndex",0);
+
+>>>>>>> Stashed changes
         binding.textScore.setText("score: "+score);
 
         questions = new Repo().getquestion(new answerarrayasyncresponce() {
@@ -62,21 +73,93 @@ public class MainActivity extends AppCompatActivity {
             binding.buttonTrue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+<<<<<<< Updated upstream
                     checkanswer(true);
                     updatequestion();
+=======
+                    if(ee!=50) {
+                        checkanswer(true);
+                        updatequestion();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this,"grate ur score is now 10000 CK",Toast.LENGTH_LONG).show();
+                        score = 10000;
+                        binding.textScore.setText("score: "+score);
+                        updatequestion();
+                    }
+>>>>>>> Stashed changes
                 }
             });
 
             binding.buttonFalse.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+<<<<<<< Updated upstream
                     checkanswer(false);
                     updatequestion();
+=======
+                    if(ee!=50) {
+                        checkanswer(false);
+                        updatequestion();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this,"hey, the above statment can only be True",Toast.LENGTH_SHORT).show();
+                    }
+>>>>>>> Stashed changes
                 }
             });
 
             }
         });
+<<<<<<< Updated upstream
+=======
+        binding.textScore.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                if(reset_count==0){
+                    score = 0;
+                    currentQuestionIndex=0;
+                    binding.textScore.setText("score: "+score);
+                    updatequestion();
+                    Toast.makeText(MainActivity.this,"you have rested your score and questions successfully -_-",Toast.LENGTH_SHORT).show();
+                    reset_count = 5;
+                    }
+                else {
+                    reset_count--;
+                    Toast.makeText(MainActivity.this,"clicking on score "+ reset_count +" more times will reset your score",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ee==0){
+                    binding.questionText.setText("HI do chella kutti nice that u found this, this is specially for you, kutti papaa is mine.");
+                    ee = 50;
+                }
+                else {
+                    ee--;
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences sharedPreferences = getSharedPreferences(score_data_id,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("score_data",score);
+        editor.putInt("currentQuestionIndex",currentQuestionIndex);
+        editor.apply();
+>>>>>>> Stashed changes
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(MainActivity.this,"sad that you closing my app, ",Toast.LENGTH_LONG).show();
     }
 
     private void checkanswer(boolean option) {
